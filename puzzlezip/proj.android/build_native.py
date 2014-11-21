@@ -43,6 +43,7 @@ def check_environment_variables():
 
     try:
         NDK_ROOT = os.environ['NDK_ROOT']
+        print NDK_ROOT
     except Exception:
         print "NDK_ROOT not defined. Please define NDK_ROOT in your environment"
         sys.exit(1)

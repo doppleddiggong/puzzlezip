@@ -1,0 +1,17 @@
+*.o
+*.o.d
+*.a
+
+project.pbxproj
+.classpath
+.project
+
+*/cocos2d/build
+
+*/proj.ios_mac/puzzlezip.xcodeproj
+
+*/proj.android/bin
+*/proj.android/assets
+*/proj.android/gen
+*/proj.android/obj
+*/proj.android/libs/armeabi
