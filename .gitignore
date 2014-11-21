@@ -2,6 +2,8 @@
 *.o.d
 *.a
 *.sdf
+*.tblog
+
 
 project.pbxproj
 .classpath
@@ -17,5 +19,5 @@ project.pbxproj
 */proj.android/obj
 */proj.android/libs/armeabi
 
-*./proj.win32/Debug.win32
+*/proj.win32/Debug.win32
 
