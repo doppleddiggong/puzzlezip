@@ -1,5 +1,5 @@
+#include "HeaderList.h"
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
 
 USING_NS_CC;
 
@@ -19,24 +19,34 @@ void AppDelegate::initGLContextAttrs()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
+	Director* pDirector = Director::getInstance();
+	GLView*   pGlview = pDirector->getOpenGLView();
 
-	if(!glview) 
+	if (pGlview == NULL)
 	{
-		glview = GLViewImpl::createWithFullScreen("puzzleZIP");
-        director->setOpenGLView(glview);
-    }
+		Rect rect = Rect(0, 0, ex_fDisplayWidth, ex_fDisplayHeight);
+		float frameZoomFactor = 1.0f;
+
+		pGlview = GLViewImpl::createWithRect("puzzleZIP", rect, frameZoomFactor);
+		pDirector->setOpenGLView(pGlview);
+	}
+
+	pDirector->setDisplayStats(false);
+	pDirector->setAnimationInterval(1.0 / 60);
 
 
-    director->setDisplayStats(false);
-    director->setAnimationInterval(1.0 / 60);
 
-	auto scene = HelloWorld::createScene();
-    director->runWithScene(scene);
+	auto pScene = TestSelectScene::createScene();
+	pDirector->runWithScene(pScene);
 
     return true;
 }
+
+void AppDelegate::initApplicationView()
+{
+
+}
+
 
 void AppDelegate::applicationDidEnterBackground()
 {
