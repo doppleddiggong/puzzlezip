@@ -2,7 +2,12 @@
 #define __TestSelectScene_SCENE_H__
 
 #include "cocos2d.h"
+#include "extensions/cocos-ext.h"
+
 #include "../HeaderList.h"
+
+USING_NS_CC;
+USING_NS_CC_EXT;
 
 class TestSelectScene : public cocos2d::Layer
 {
@@ -15,10 +20,13 @@ public:
     CREATE_FUNC(TestSelectScene);
 
 private:
-	void initLoadData();
-
 	Label*	m_pTitleLabel;
 	Sprite*	m_pBg;
+    
+    void initLoadData();
+
+    void initBg();
+    void initCCS();
 };
 
 #endif // __TestSelectScene_SCENE_H__

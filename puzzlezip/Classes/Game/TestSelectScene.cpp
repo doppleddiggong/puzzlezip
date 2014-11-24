@@ -1,7 +1,5 @@
  #include "TestSelectScene.h"
 
-USING_NS_CC;
-
 Scene* TestSelectScene::createScene()
 {
 	Scene* pScene = Scene::create();
@@ -18,6 +16,12 @@ bool TestSelectScene::init()
 
 void TestSelectScene::initLoadData()
 {
+    this->initBg();
+    this->initCCS();
+}
+
+void TestSelectScene::initBg()
+{
     m_pBg = createSprite( this, "Game/guild_bg.png", centerPos() );
     m_pTitleLabel = createLabel( this, ex_fNormalFontSize, centerPos() );
     
@@ -27,6 +31,10 @@ void TestSelectScene::initLoadData()
     m_pTitleLabel->setColor( Color3B::RED );
 }
 
+void TestSelectScene::initCCS()
+{
+//    Node* pCCSNode = SceneReader::
+}
 
 
 
