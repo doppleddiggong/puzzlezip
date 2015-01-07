@@ -6,31 +6,63 @@
 //
 //
 
+#include "DefineData.h"
 #include "Display.h"
 
-float ex_fScale;
-float ex_fPositionSacleX;
-float ex_fPositionSacleY;
+int     ex_nSceneWidth;
+int     ex_nSceneHeight;
+float   ex_fScale;
+float   ex_fPositionSacleX;
+float   ex_fPositionSacleY;
+int     ex_nSceneWidthOffset;
+int     ex_nSceneHeightOffset;
 
 float ex_fNormalFontSize = 24.0f;
 
 // 실제 화면의 X
 float getWindowX(float fPosX)
 {
-    float fReturnPosX = fPosX * ex_fPositionSacleX;
-    return fReturnPosX;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    return fPosX;
+#else
+    float scaleX = x * ex_fScale;
+    return (scaleX + ex_nSceneWidthOffset);
+#endif
 }
 
 // 실제 화면의 Y
 float getWindowY(float fPosY)
 {
-    float fReturnPosY = fPosY * ex_fPositionSacleY;
-    return fReturnPosY;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    return (DEFAULT_DISPLAY_HEIGHT - fPosY);
+#else
+    float scaleY = y * ex_fScale;
+    return ((ex_nSceneHeight - scaleY) - ex_nSceneHeightOffset);
+#endif
 }
 
 Vec2 centerPos()
 {
-    return Vec2( DEFAULT_DISPLAY_WIDTH/2, DEFAULT_DISPLAY_HEIGHT/2 );
+    return Vec2( getWindowX(DEFAULT_DISPLAY_WIDTH/2), getWindowY(DEFAULT_DISPLAY_HEIGHT/2) );
+}
+
+bool isVisibleTouchEnable( Sprite* pSprite )
+{
+    if( pSprite->isVisible() && pSprite->getOpacity() > 0 )
+        return true;
+    
+    return false;
+}
+
+bool isSpriteRectTouched( Sprite* pSprite, Vec2 vecLocation )
+{
+    Vec2 touchPoint = pSprite->convertToNodeSpace(vecLocation);
+    Vec2 pos = pSprite->getPosition();
+    Size size = pSprite->getContentSize();
+    Rect rect = Rect(pos.x-size.width, pos.y-size.height, size.width, size.height);
+    rect.origin = Vec2::ZERO;
+    
+    return rect.containsPoint(touchPoint);
 }
 
 // todo. 예외처리
@@ -38,6 +70,7 @@ Sprite* createSprite( Node* pNode, const char* strFilePath, Vec2 posPt )
 {
     Sprite* pSprite = Sprite::create(strFilePath);
     pSprite->setPosition(posPt);
+    pSprite->setScale(ex_fScale);
     pNode->addChild(pSprite);
     
     return pSprite;
@@ -48,7 +81,18 @@ Label* createLabel( Node* pNode, float fFontSize, Vec2 posPt )
 {
     Label* pLabel = Label::createWithTTF("", FONT_PATH, fFontSize );
     pLabel->setPosition( posPt );
+    pLabel->setScale(ex_fScale);
+
     pNode->addChild(pLabel);
     
     return pLabel;
+}
+
+Vec2 getPosByPosIndex( int nPosIndex )
+{
+    int nWidth = DEFAULT_DISPLAY_WIDTH/CELL_SIZE;
+    int nPosX = (nPosIndex % nWidth)*CELL_SIZE;
+    int nPosY = (nPosIndex / nWidth)*CELL_SIZE;
+    
+    return Vec2( getWindowX(nPosX), getWindowY(nPosY));
 }

@@ -1,13 +1,7 @@
 #ifndef __TestSelectScene_SCENE_H__
 #define __TestSelectScene_SCENE_H__
 
-#include "cocos2d.h"
-#include "extensions/cocos-ext.h"
-
 #include "../HeaderList.h"
-
-USING_NS_CC;
-USING_NS_CC_EXT;
 
 class TestSelectScene : public cocos2d::Layer
 {

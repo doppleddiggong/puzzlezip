@@ -20,25 +20,23 @@ void AppDelegate::initGLContextAttrs()
 bool AppDelegate::applicationDidFinishLaunching()
 {
 	Director* pDirector = Director::getInstance();
-	GLView*   pGlview = pDirector->getOpenGLView();
+	GLView* pGlview = pDirector->getOpenGLView();
 
-    this->initDisplayValue();
-    
 	if ( pGlview == NULL)
 	{
-		Rect rect = Rect(0, 0, DEFAULT_DISPLAY_WIDTH, DEFAULT_DISPLAY_HEIGHT);
-		float frameZoomFactor = 1.0f;
-
-		pGlview = GLViewImpl::createWithRect("puzzleZIP", rect, frameZoomFactor);
-		pDirector->setOpenGLView(pGlview);
+        pGlview = GLViewImpl::create("puzzleZIP");
+        pDirector->setOpenGLView(pGlview);
 	}
     
-    pGlview->setDesignResolutionSize(DEFAULT_DISPLAY_WIDTH, DEFAULT_DISPLAY_HEIGHT, ResolutionPolicy::SHOW_ALL );
+    this->initDisplayValue();
+    
+//    pGlview->setDesignResolutionSize(DEFAULT_DISPLAY_WIDTH, DEFAULT_DISPLAY_HEIGHT, ResolutionPolicy::SHOW_ALL );
+    pGlview->setDesignResolutionSize(DEFAULT_DISPLAY_WIDTH, DEFAULT_DISPLAY_HEIGHT, ResolutionPolicy::EXACT_FIT );
 
 	pDirector->setDisplayStats(false);
 	pDirector->setAnimationInterval(1.0 / 60);
 
-	auto pScene = TestSelectScene::createScene();
+	auto pScene = START_SCENE;
 	pDirector->runWithScene(pScene);
 
     return true;
@@ -46,10 +44,31 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 void AppDelegate::initDisplayValue()
 {
-    Size size = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    CCLOG("size.width : %3.1f. size.height : %3.1f", size.width, size.height);
-    CCLOG("origin.x : %3.1f. origin.y : %3.1f", origin.x, origin.y);
+    Size winSize = Director::getInstance()->getWinSize();
+    
+    ex_nSceneWidth = winSize.width;
+    ex_nSceneHeight = winSize.height;
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    ex_fScale = 1.0f;
+    ex_nSceneWidthOffset = 0;
+    ex_nSceneHeightOffset = 0;
+#else
+    Size winSizePixel = Director::getInstance()->getWinSizeInPixels();
+
+    // 스케일 값
+    ex_fScale = (float)ex_nSceneWidth/DEFAULT_DISPLAY_WIDTH;
+    
+    // 만약 기준 길이가 세로 길이를 넘어 갈 경우 ex_fScale을 세로에 맞추어서 ex_fScale값을 다시 구해준다.
+    if((ex_nSceneHeight - (DEFAULT_DISPLAY_HEIGHT * ex_fScale)) < 0)
+    {
+        ex_fScale = (float)ex_nSceneHeight/DEFAULT_DISPLAY_HEIGHT;
+    }
+    
+    ex_nSceneWidthOffset = (int)( winSizePixel.width - (int)( DEFAULT_DISPLAY_WIDTH * ex_fScale ) ) / 2;
+    ex_nSceneHeightOffset = (int)( winSizePixel.height - (int)( DEFAULT_DISPLAY_HEIGHT * ex_fScale ) ) / 2;
+#endif
+    
 }
 
 void AppDelegate::applicationDidEnterBackground()

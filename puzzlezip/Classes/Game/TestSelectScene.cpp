@@ -23,6 +23,7 @@ void TestSelectScene::initLoadData()
 void TestSelectScene::initBg()
 {
     m_pBg = createSprite( this, "Game/guild_bg.png", centerPos() );
+    m_pBg->setOpacity(150);
     m_pTitleLabel = createLabel( this, ex_fNormalFontSize, centerPos() );
     
     __String strBuff;

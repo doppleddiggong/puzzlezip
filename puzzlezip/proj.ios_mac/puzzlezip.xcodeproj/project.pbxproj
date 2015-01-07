@@ -51,16 +51,26 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		B56132DE1A44039C008E996F /* MainStageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132DC1A44039C008E996F /* MainStageScene.cpp */; };
+		B56132DF1A44039C008E996F /* MainStageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132DC1A44039C008E996F /* MainStageScene.cpp */; };
+		B56132E21A4403AE008E996F /* CellLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132E01A4403AE008E996F /* CellLayer.cpp */; };
+		B56132E31A4403AE008E996F /* CellLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132E01A4403AE008E996F /* CellLayer.cpp */; };
+		B56132E61A4403BE008E996F /* CharacterLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132E41A4403BE008E996F /* CharacterLayer.cpp */; };
+		B56132E71A4403BE008E996F /* CharacterLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132E41A4403BE008E996F /* CharacterLayer.cpp */; };
+		B56132EA1A440501008E996F /* PushGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132E81A440501008E996F /* PushGameData.cpp */; };
+		B56132EB1A440501008E996F /* PushGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56132E81A440501008E996F /* PushGameData.cpp */; };
 		B57CD1781A230DC000BDF4F7 /* ccs-res in Resources */ = {isa = PBXBuildFile; fileRef = B57CD1771A230DC000BDF4F7 /* ccs-res */; };
 		B57CD1791A230DC000BDF4F7 /* ccs-res in Resources */ = {isa = PBXBuildFile; fileRef = B57CD1771A230DC000BDF4F7 /* ccs-res */; };
-		B5A46A511A1F2DBB00C5DD3D /* DefineData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A46A4B1A1F2DBB00C5DD3D /* DefineData.cpp */; };
-		B5A46A521A1F2DBB00C5DD3D /* DefineData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A46A4B1A1F2DBB00C5DD3D /* DefineData.cpp */; };
 		B5A46A531A1F2DBB00C5DD3D /* TestSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A46A4E1A1F2DBB00C5DD3D /* TestSelectScene.cpp */; };
 		B5A46A541A1F2DBB00C5DD3D /* TestSelectScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A46A4E1A1F2DBB00C5DD3D /* TestSelectScene.cpp */; };
 		B5A46A5A1A1F2EA300C5DD3D /* Game in Resources */ = {isa = PBXBuildFile; fileRef = B5A46A591A1F2EA300C5DD3D /* Game */; };
 		B5A46A5B1A1F2EA300C5DD3D /* Game in Resources */ = {isa = PBXBuildFile; fileRef = B5A46A591A1F2EA300C5DD3D /* Game */; };
 		B5A46A5E1A1F346200C5DD3D /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A46A5C1A1F346200C5DD3D /* Display.cpp */; };
 		B5A46A5F1A1F346200C5DD3D /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A46A5C1A1F346200C5DD3D /* Display.cpp */; };
+		B5E4377F1A5A71F100D1FE61 /* CustomMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E4377D1A5A71F100D1FE61 /* CustomMath.cpp */; };
+		B5E437801A5A71F100D1FE61 /* CustomMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E4377D1A5A71F100D1FE61 /* CustomMath.cpp */; };
+		B5E437831A5A749A00D1FE61 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E437811A5A749A00D1FE61 /* BaseLayer.cpp */; };
+		B5E437841A5A749A00D1FE61 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5E437811A5A749A00D1FE61 /* BaseLayer.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -146,8 +156,15 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		B56132DC1A44039C008E996F /* MainStageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainStageScene.cpp; sourceTree = "<group>"; };
+		B56132DD1A44039C008E996F /* MainStageScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainStageScene.h; sourceTree = "<group>"; };
+		B56132E01A4403AE008E996F /* CellLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CellLayer.cpp; sourceTree = "<group>"; };
+		B56132E11A4403AE008E996F /* CellLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellLayer.h; sourceTree = "<group>"; };
+		B56132E41A4403BE008E996F /* CharacterLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterLayer.cpp; sourceTree = "<group>"; };
+		B56132E51A4403BE008E996F /* CharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterLayer.h; sourceTree = "<group>"; };
+		B56132E81A440501008E996F /* PushGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PushGameData.cpp; sourceTree = "<group>"; };
+		B56132E91A440501008E996F /* PushGameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushGameData.h; sourceTree = "<group>"; };
 		B57CD1771A230DC000BDF4F7 /* ccs-res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "ccs-res"; sourceTree = "<group>"; };
-		B5A46A4B1A1F2DBB00C5DD3D /* DefineData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefineData.cpp; sourceTree = "<group>"; };
 		B5A46A4C1A1F2DBB00C5DD3D /* DefineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefineData.h; sourceTree = "<group>"; };
 		B5A46A4E1A1F2DBB00C5DD3D /* TestSelectScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSelectScene.cpp; sourceTree = "<group>"; };
 		B5A46A4F1A1F2DBB00C5DD3D /* TestSelectScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSelectScene.h; sourceTree = "<group>"; };
@@ -155,6 +172,10 @@
 		B5A46A591A1F2EA300C5DD3D /* Game */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Game; sourceTree = "<group>"; };
 		B5A46A5C1A1F346200C5DD3D /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
 		B5A46A5D1A1F346200C5DD3D /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
+		B5E4377D1A5A71F100D1FE61 /* CustomMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomMath.cpp; sourceTree = "<group>"; };
+		B5E4377E1A5A71F100D1FE61 /* CustomMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMath.h; sourceTree = "<group>"; };
+		B5E437811A5A749A00D1FE61 /* BaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLayer.cpp; sourceTree = "<group>"; };
+		B5E437821A5A749A00D1FE61 /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -345,13 +366,31 @@
 			path = ios;
 			sourceTree = SOURCE_ROOT;
 		};
+		B56132DB1A440381008E996F /* PushPush */ = {
+			isa = PBXGroup;
+			children = (
+				B56132E01A4403AE008E996F /* CellLayer.cpp */,
+				B56132E11A4403AE008E996F /* CellLayer.h */,
+				B56132E41A4403BE008E996F /* CharacterLayer.cpp */,
+				B56132E51A4403BE008E996F /* CharacterLayer.h */,
+				B56132DC1A44039C008E996F /* MainStageScene.cpp */,
+				B56132DD1A44039C008E996F /* MainStageScene.h */,
+				B56132E81A440501008E996F /* PushGameData.cpp */,
+				B56132E91A440501008E996F /* PushGameData.h */,
+			);
+			path = PushPush;
+			sourceTree = "<group>";
+		};
 		B5A46A4A1A1F2DBB00C5DD3D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B5A46A4B1A1F2DBB00C5DD3D /* DefineData.cpp */,
 				B5A46A4C1A1F2DBB00C5DD3D /* DefineData.h */,
 				B5A46A5C1A1F346200C5DD3D /* Display.cpp */,
 				B5A46A5D1A1F346200C5DD3D /* Display.h */,
+				B5E4377D1A5A71F100D1FE61 /* CustomMath.cpp */,
+				B5E4377E1A5A71F100D1FE61 /* CustomMath.h */,
+				B5E437811A5A749A00D1FE61 /* BaseLayer.cpp */,
+				B5E437821A5A749A00D1FE61 /* BaseLayer.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -359,6 +398,7 @@
 		B5A46A4D1A1F2DBB00C5DD3D /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				B56132DB1A440381008E996F /* PushPush */,
 				B5A46A4E1A1F2DBB00C5DD3D /* TestSelectScene.cpp */,
 				B5A46A4F1A1F2DBB00C5DD3D /* TestSelectScene.h */,
 			);
@@ -510,12 +550,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B56132E61A4403BE008E996F /* CharacterLayer.cpp in Sources */,
 				B5A46A5E1A1F346200C5DD3D /* Display.cpp in Sources */,
-				B5A46A511A1F2DBB00C5DD3D /* DefineData.cpp in Sources */,
+				B56132DE1A44039C008E996F /* MainStageScene.cpp in Sources */,
+				B5E4377F1A5A71F100D1FE61 /* CustomMath.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				B5A46A531A1F2DBB00C5DD3D /* TestSelectScene.cpp in Sources */,
+				B56132E21A4403AE008E996F /* CellLayer.cpp in Sources */,
+				B5E437831A5A749A00D1FE61 /* BaseLayer.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				B56132EA1A440501008E996F /* PushGameData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,10 +568,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5A46A521A1F2DBB00C5DD3D /* DefineData.cpp in Sources */,
+				B5E437801A5A71F100D1FE61 /* CustomMath.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				B56132DF1A44039C008E996F /* MainStageScene.cpp in Sources */,
 				B5A46A541A1F2DBB00C5DD3D /* TestSelectScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				B56132E71A4403BE008E996F /* CharacterLayer.cpp in Sources */,
+				B56132EB1A440501008E996F /* PushGameData.cpp in Sources */,
+				B5E437841A5A749A00D1FE61 /* BaseLayer.cpp in Sources */,
+				B56132E31A4403AE008E996F /* CellLayer.cpp in Sources */,
 				B5A46A5F1A1F346200C5DD3D /* Display.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
