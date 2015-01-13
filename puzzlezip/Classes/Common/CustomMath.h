@@ -14,6 +14,6 @@
 USING_NS_CC;
 
 int getPtDistance( Vec2 pt1, Vec2 pt2 );
-int getPtDistance( int ptx, int pty, int pt2x, int pt2y );
+int getPtDistance( float ptx, float pty, float pt2x, float pt2y );
 
 #endif /* defined(__puzzlezip__CustomMath__) */

@@ -20,10 +20,6 @@ private:
     Sprite* m_pCell;
     
 public:
-    enum
-    {
-    };
-    
     CellLayer();
     virtual ~CellLayer();
     static CellLayer* create( int nType, int nPosIndex );

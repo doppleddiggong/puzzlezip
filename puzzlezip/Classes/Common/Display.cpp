@@ -22,23 +22,13 @@ float ex_fNormalFontSize = 24.0f;
 // 실제 화면의 X
 float getWindowX(float fPosX)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     return fPosX;
-#else
-    float scaleX = x * ex_fScale;
-    return (scaleX + ex_nSceneWidthOffset);
-#endif
 }
 
 // 실제 화면의 Y
 float getWindowY(float fPosY)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     return (DEFAULT_DISPLAY_HEIGHT - fPosY);
-#else
-    float scaleY = y * ex_fScale;
-    return ((ex_nSceneHeight - scaleY) - ex_nSceneHeightOffset);
-#endif
 }
 
 Vec2 centerPos()
@@ -65,24 +55,19 @@ bool isSpriteRectTouched( Sprite* pSprite, Vec2 vecLocation )
     return rect.containsPoint(touchPoint);
 }
 
-// todo. 예외처리
 Sprite* createSprite( Node* pNode, const char* strFilePath, Vec2 posPt )
 {
     Sprite* pSprite = Sprite::create(strFilePath);
     pSprite->setPosition(posPt);
-    pSprite->setScale(ex_fScale);
     pNode->addChild(pSprite);
     
     return pSprite;
 }
 
-// todo. 예외처리
 Label* createLabel( Node* pNode, float fFontSize, Vec2 posPt )
 {
     Label* pLabel = Label::createWithTTF("", FONT_PATH, fFontSize );
     pLabel->setPosition( posPt );
-    pLabel->setScale(ex_fScale);
-
     pNode->addChild(pLabel);
     
     return pLabel;

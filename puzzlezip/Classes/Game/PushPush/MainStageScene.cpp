@@ -68,13 +68,13 @@ void MainStageScene::initBg()
     m_pBg = createSprite( this, "Game/guild_bg.png", centerPos() );
     m_pBg->setOpacity(150);
     m_pBg->setTag(100);
-//    m_touchMap.insert(MAP_FUNC_LIST::value_type(m_pBg, &MainStageScene::bgTouched));
+    m_touchMap.insert(MAP_FUNC_LIST::value_type(m_pBg, &MainStageScene::bgTouched));
 
-//    m_pTitleLabel = createLabel( this, ex_fNormalFontSize, centerPos() );
-//    m_pTitleLabel->setColor( Color3B::RED );
-//    __String strBuff;
-//    strBuff.initWithFormat("%d MainStageScene", 0);
-//    m_pTitleLabel->setString( strBuff.getCString());
+    m_pTitleLabel = createLabel( this, ex_fNormalFontSize, centerPos() );
+    m_pTitleLabel->setColor( Color3B::RED );
+    __String strBuff;
+    strBuff.initWithFormat("%d MainStageScene", 0);
+    m_pTitleLabel->setString( strBuff.getCString());
 }
 
 void MainStageScene::initCellLayer()

@@ -43,7 +43,7 @@ bool CellLayer::init( int nType, int nPosIndex )
         m_pCell->setAnchorPoint(Vec2(0, 1));
 
         // 이미지의 크기를 정의한 값으로 만들어준다
-        m_pCell->setScale(ex_fScale * CELL_SIZE/m_pCell->getContentSize().width);
+        m_pCell->setScale( CELL_SIZE/m_pCell->getContentSize().width);
         
         if( nType == CELL_TYPE_WALL )
         {

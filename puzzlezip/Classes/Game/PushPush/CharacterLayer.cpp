@@ -42,7 +42,7 @@ bool CharacterLayer::init( int nPosIndex )
         m_pCharacterCell->setAnchorPoint(Vec2(0, 1));
         
         // 이미지의 크기를 정의한 값으로 만들어준다
-        m_pCharacterCell->setScale(ex_fScale * CELL_SIZE/m_pCharacterCell->getContentSize().width);
+        m_pCharacterCell->setScale( CELL_SIZE/m_pCharacterCell->getContentSize().width);
     }
     return bRet;
 }
