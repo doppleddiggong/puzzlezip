@@ -42,12 +42,14 @@ private:
     int         m_nCellCnt;
     int         m_nCellWidth;
     int         m_nCellHeight;
-    
+        
     Label*      m_pTitleLabel;
     Sprite*     m_pTouchJoyStick;
 
     Sprite*     m_pArrowButton[ARROW_MAX_NUM][BUTTON_MAX_NUM];
     std::vector<CellLayer*>     m_vecCellLayer;
+    
+    void loadStageData( int nStage );
     
     void initLoadData();
     void initTouchEvent();

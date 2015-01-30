@@ -8,15 +8,7 @@
 
 #include "MainStageScene.h"
 
-int CELL_MAP[] =
-{
-    0,0,0,0,1,0,0,0,0,0,
-    0,0,0,0,3,0,0,0,0,0,
-    0,0,1,1,1,2,3,1,0,0,
-    0,0,0,0,0,1,0,0,0,0,
-    0,0,0,0,0,1,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,
-};
+int CELL_MAP[60];
 
 MainStageScene::MainStageScene()
 {
@@ -31,7 +23,6 @@ Scene* MainStageScene::createScene()
     Scene* pScene = Scene::create();
     MainStageScene* pLayer = MainStageScene::create();
     pLayer->initLoadData();
-//    pLayer->setKeyboardEnabled( true );
     pScene->addChild(pLayer);
     return pScene;
 }
@@ -44,12 +35,34 @@ bool MainStageScene::init()
 void MainStageScene::initLoadData()
 {
     CCLOG("MainStageScene::initLoadData()");
+    
+    // StageData를 받아서 넣는다.
+    int nCurStage = 3;
+    this->loadStageData( nCurStage );
+    
     this->initTouchEvent();
-
     this->initBg();
     this->initCellLayer();
     this->initArrowButton();
 }
+
+void MainStageScene::loadStageData( int nStage )
+{
+    ValueMap valueMap = FileUtils::getInstance()->getValueMapFromFile("Data/push_stagedata.xml");
+    
+    __String strStageKey;
+    strStageKey.initWithFormat("stage%d", nStage );
+    
+    __String stageInfo = valueMap[strStageKey.getCString()].asString();
+ 
+    int nSize = stageInfo.length();
+    
+    for( int i = 0 ; i < nSize; i++ )
+    {
+        CELL_MAP[i] = Value( stageInfo._string.substr(i,1) ).asInt();
+    }
+}
+
 
 void MainStageScene::initTouchEvent()
 {
