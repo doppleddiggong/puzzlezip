@@ -8,6 +8,7 @@ USING_NS_CC_EXT;
 #include "Common/Display.h"
 #include "Common/CustomMath.h"
 #include "Common/BaseLayer.h"
+#include "Common/Joystick.h"
 
 #include "Game/TestSelectScene.h"
 
