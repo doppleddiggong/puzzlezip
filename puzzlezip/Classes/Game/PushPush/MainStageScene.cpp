@@ -31,7 +31,7 @@ Scene* MainStageScene::createScene()
     Scene* pScene = Scene::create();
     MainStageScene* pLayer = MainStageScene::create();
     pLayer->initLoadData();
-    pLayer->setKeypadEnabled( true );
+//    pLayer->setKeyboardEnabled( true );
     pScene->addChild(pLayer);
     return pScene;
 }
@@ -43,6 +43,7 @@ bool MainStageScene::init()
 
 void MainStageScene::initLoadData()
 {
+    CCLOG("MainStageScene::initLoadData()");
     this->initTouchEvent();
 
     this->initBg();
@@ -333,6 +334,9 @@ void MainStageScene::buttonTouchEnded( int nTag )
 
 bool MainStageScene::onTouchBegan(Touch* pTouch, Event* pEvent)
 {
+    if(pTouch->getID() != SINGLE_TOUCH_ID)
+        return true;
+    
     Vec2 loc = pTouch->getLocation();
     m_pTouchBegan = loc;
     m_bTouchMoved = false;
@@ -357,6 +361,9 @@ bool MainStageScene::onTouchBegan(Touch* pTouch, Event* pEvent)
 
 void MainStageScene::onTouchMoved(Touch* pTouch, Event* pEvent)
 {
+    if(pTouch->getID() != SINGLE_TOUCH_ID)
+        return;
+
     Vec2 loc = pTouch->getLocation();
     
     if( getPtDistance(m_pTouchBegan, loc ) > TOUCH_MOVED_OFFSET )
@@ -370,7 +377,7 @@ void MainStageScene::onTouchMoved(Touch* pTouch, Event* pEvent)
         if( isVisibleTouchEnable( pSprite) )
         {
             int nIndex = pSprite->getTag();
-            if( isSpriteRectTouched( pSprite, loc ))
+            if( isSpriteRectTouched( pSprite, loc ) == false )
             {
                 if( m_nTouchTag == nIndex )
                 {
@@ -384,8 +391,10 @@ void MainStageScene::onTouchMoved(Touch* pTouch, Event* pEvent)
 
 void MainStageScene::onTouchEnded(Touch* pTouch, Event* pEvent)
 {
-    Vec2 loc = pTouch->getLocation();
+    if(pTouch->getID() != SINGLE_TOUCH_ID)
+        return;
 
+    Vec2 loc = pTouch->getLocation();
     m_pTouchEnded = loc;
     this->buttonTouchEnded(m_nTouchTag);
 

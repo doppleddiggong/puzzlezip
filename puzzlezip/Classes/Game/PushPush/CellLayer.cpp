@@ -51,7 +51,7 @@ bool CellLayer::init( int nType, int nPosIndex )
     {
         m_nPosIndex = nPosIndex;
 
-        m_pCell = createSprite( this, "Game/common_slot_lock.png", getPosByPosIndex( nPosIndex ) );
+        m_pCell = createSprite( this, CELL_IMAGE[0], getPosByPosIndex( nPosIndex ) );
         m_pCell->setAnchorPoint(Vec2(0, 1));
 
         // 이미지의 크기를 정의한 값으로 만들어준다

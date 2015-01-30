@@ -1,7 +1,6 @@
-APP_STL := c++_static
-NDK_TOOLCHAIN_VERSION=clang
+APP_STL := gnustl_static
 
-APP_CPPFLAGS := -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION=1 -std=c++11 -fsigned-char
+APP_CPPFLAGS := -frtti -DCC_ENABLE_CHIPMUNK_INTEGRATION=1 -std=c++11 -fsigned-char -DCCOCOS2D_DEBUG=1
 APP_LDFLAGS := -latomic
 
 

@@ -64,6 +64,24 @@ Sprite* createSprite( Node* pNode, const char* strFilePath, Vec2 posPt )
     return pSprite;
 }
 
+void createButton( Node* pNode, Sprite* pButton[BUTTON_MAX_NUM], const char* strFilePath, Vec2 posPt, int nTag )
+{
+    Texture2D* pButtonTexture = Director::getInstance()->getTextureCache()->addImage( strFilePath );
+    Size size = pButtonTexture->getContentSize();
+    pButton[NORMAL_IMAGE] = Sprite::createWithTexture( pButtonTexture, Rect(0, 0, size.width/2, size.height) );
+    pButton[PRESS_IMAGE] = Sprite::createWithTexture( pButtonTexture, Rect(size.width/2, 0, size.width/2, size.height));
+    pButton[NORMAL_IMAGE]->setPosition( posPt );
+    pButton[PRESS_IMAGE]->setPosition( posPt );
+    pButton[NORMAL_IMAGE]->setAnchorPoint( Vec2( 0.5f, 0.5f) );
+    pButton[PRESS_IMAGE]->setAnchorPoint( Vec2( 0.5f, 0.5f) );
+    pButton[NORMAL_IMAGE]->setTag(nTag);
+    pButton[PRESS_IMAGE]->setTag(nTag);
+    pButton[NORMAL_IMAGE]->setVisible(true);
+    pButton[PRESS_IMAGE]->setVisible(false);
+    pNode->addChild(pButton[NORMAL_IMAGE]);
+    pNode->addChild(pButton[PRESS_IMAGE]);
+}
+
 Label* createLabel( Node* pNode, float fFontSize, Vec2 posPt )
 {
     Label* pLabel = Label::createWithTTF("", FONT_PATH, fFontSize );

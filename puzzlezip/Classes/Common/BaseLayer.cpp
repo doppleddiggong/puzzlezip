@@ -31,3 +31,21 @@ bool BaseScene::init()
 {
     return Layer::init();
 }
+
+void BaseScene::menuCloseCallback( cocos2d::Ref* pSender )
+{
+    CCLOG("BaseScene::menuCloseCallback");
+    
+    MessageBox("1234", "1234");
+}
+
+// ####   추가   ####
+void BaseScene::onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event *event )
+{
+    if (keycode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+        MessageBox("1234", "1234");
+
+//        Director::getInstance()->end();
+    }
+}

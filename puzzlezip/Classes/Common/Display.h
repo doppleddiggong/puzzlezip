@@ -31,7 +31,8 @@ bool isVisibleTouchEnable( Sprite* pSprite );
 bool isSpriteRectTouched( Sprite* pSprite, Vec2 vecLocation );
 
 Sprite* createSprite( Node* pNode, const char* strFilePath, Vec2 posPt );
-Label* createLabel( Node* pNode, float fFontSize, Vec2 posPt );
+void    createButton( Node* pNode, Sprite* pButton[BUTTON_MAX_NUM], const char* strFilePath, Vec2 posPt, int nTag );
+Label*  createLabel( Node* pNode, float fFontSize, Vec2 posPt );
 
 Vec2 getPosByPosIndex( int nPosIndex );
 
