@@ -7,11 +7,14 @@
 #define DEFAULT_DISPLAY_WIDTH   800
 #define DEFAULT_DISPLAY_HEIGHT  480
 
-#define FONT_PATH "fonts/Marker Felt.ttf"
+#define FONT_PATH "fonts/nanumgothicbold.ttf"
 
 #define TOUCH_MOVED_OFFSET 40.0f
 #define TOUCH_CANCEL_TAG   -1
 
+// 항상 씬 먼저 터치를 받게하겠다.
+#define TOUCH_PRIORITY_SCENE    1
+#define TOUCH_PRIORITY_LAYER    2
 
 #define SINGLE_TOUCH_ID     0
 

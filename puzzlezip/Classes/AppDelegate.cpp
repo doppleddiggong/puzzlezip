@@ -36,6 +36,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	pDirector->setDisplayStats(false);
 	pDirector->setAnimationInterval(1.0 / 60);
 
+    CCLOG("%s", FileUtils::getInstance()->getWritablePath().c_str());
+    
 	auto pScene = START_SCENE;
 	pDirector->runWithScene(pScene);
 

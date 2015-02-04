@@ -14,8 +14,7 @@
 #define ARROW_MAX_NUM  4
 
 class CellLayer;
-class MainStageScene : public BaseScene,
-                       public JoystickDelegate
+class MainStageScene : public BaseScene
 {
 public:
     MainStageScene();
@@ -23,6 +22,15 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
     CREATE_FUNC(MainStageScene);
+    
+    void (MainStageScene::*pFunc)(int index);
+    typedef void (MainStageScene::*Func)(int);
+    typedef std::map<cocos2d::Sprite*, Func> MAP_FUNC_LIST;
+    
+    MAP_FUNC_LIST           m_touchMap;
+    MAP_FUNC_LIST::iterator m_Iterator;
+
+    void arrowTouched( int nTag );
     
     void buttonTouchBegan( int nTag );
     void buttonTouchEnded( int nTag );    
@@ -42,15 +50,16 @@ private:
     int         m_nCellCnt;
     int         m_nCellWidth;
     int         m_nCellHeight;
-        
+    
+    ValueMap    m_valueMap;
+    
     Label*      m_pTitleLabel;
-    Sprite*     m_pTouchJoyStick;
 
     Sprite*     m_pArrowButton[ARROW_MAX_NUM][BUTTON_MAX_NUM];
     std::vector<CellLayer*>     m_vecCellLayer;
     
     void loadStageData( int nStage );
-    
+
     void initLoadData();
     void initTouchEvent();
     void initBg();
@@ -66,19 +75,6 @@ private:
     int  isBallMoveEnable( int nTag, int nCurPosIdx );
     int  getMoveShakeType( int nTag );
     int  getNextPosIdx( int nTag, int nCurPosIdx );
-    
-    void arrowTouched( int nTag );
-
-    
-    void (MainStageScene::*pFunc)(int index);
-    typedef void (MainStageScene::*Func)(int);
-    typedef std::map<cocos2d::Sprite*, Func> MAP_FUNC_LIST;
-    
-    MAP_FUNC_LIST           m_touchMap;
-    MAP_FUNC_LIST::iterator m_Iterator;
-    
-
-    void updateJoyStickVelocity( Vec2 vecJoyStickVelocity );
 };
 
 #endif /* defined(__puzzlezip__MainStageScene__) */

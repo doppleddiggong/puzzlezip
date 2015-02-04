@@ -10,7 +10,6 @@
 #define __puzzlezip__CustomMath__
 
 #include "cocos2d.h"
-
 USING_NS_CC;
 
 typedef enum

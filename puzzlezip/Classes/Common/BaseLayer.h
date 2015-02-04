@@ -36,7 +36,6 @@ public:
     
     void menuCloseCallback(cocos2d::Ref* pSender);
     
-    
     void onKeyReleased( cocos2d::EventKeyboard::KeyCode keycode, cocos2d::Event *event );
 };
 

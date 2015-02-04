@@ -14,7 +14,11 @@ USING_NS_CC_EXT;
 
 #include "Game/PushPush/PushGameData.h"
 #include "Game/PushPush/CellLayer.h"
-#include "Game/PushPush/CharacterLayer.h"
+//#include "Game/PushPush/CharacterLayer.h"
+
+#include "Game/PushPush/TitleScene.h"
+#include "Game/PushPush/StageSelectScene.h"
+#include "Game/PushPush/CreateStageScene.h"
 #include "Game/PushPush/MainStageScene.h"
 
 

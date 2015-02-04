@@ -8,8 +8,6 @@
 
 #include "MainStageScene.h"
 
-int CELL_MAP[60];
-
 MainStageScene::MainStageScene()
 {
     m_vecCellLayer.clear();
@@ -36,7 +34,6 @@ void MainStageScene::initLoadData()
 {
     CCLOG("MainStageScene::initLoadData()");
     
-    // StageData를 받아서 넣는다.
     int nCurStage = 3;
     this->loadStageData( nCurStage );
     
@@ -48,21 +45,19 @@ void MainStageScene::initLoadData()
 
 void MainStageScene::loadStageData( int nStage )
 {
-    ValueMap valueMap = FileUtils::getInstance()->getValueMapFromFile("Data/push_stagedata.xml");
+    // 저장소에서 XML데이터를 읽어 온다
+    m_valueMap = getPushGameDataValueMap();
     
+    // 현재 스테이지에 해당하는 데이터를 읽어온다
     __String strStageKey;
     strStageKey.initWithFormat("stage%d", nStage );
-    
-    __String stageInfo = valueMap[strStageKey.getCString()].asString();
+    __String stageInfo = m_valueMap[strStageKey.getCString()].asString();
  
-    int nSize = stageInfo.length();
-    
-    for( int i = 0 ; i < nSize; i++ )
+    for( int i = 0 ; i < stageInfo.length(); i++ )
     {
-        CELL_MAP[i] = Value( stageInfo._string.substr(i,1) ).asInt();
+        STAGE_DATA_MAP[i] = Value( stageInfo._string.substr(i,1) ).asInt();
     }
 }
-
 
 void MainStageScene::initTouchEvent()
 {
@@ -70,7 +65,8 @@ void MainStageScene::initTouchEvent()
     pEventListener->onTouchBegan = CC_CALLBACK_2(MainStageScene::onTouchBegan, this);
     pEventListener->onTouchMoved = CC_CALLBACK_2(MainStageScene::onTouchMoved, this);
     pEventListener->onTouchEnded = CC_CALLBACK_2(MainStageScene::onTouchEnded, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(pEventListener, this);
+    pEventListener->setSwallowTouches(true);
+    _eventDispatcher->addEventListenerWithFixedPriority(pEventListener, TOUCH_PRIORITY_SCENE );
 }
 
 void MainStageScene::initBg()
@@ -86,11 +82,10 @@ void MainStageScene::initCellLayer()
 {
     m_nCellWidth = DEFAULT_DISPLAY_WIDTH/CELL_SIZE;
     m_nCellHeight = DEFAULT_DISPLAY_HEIGHT/CELL_SIZE;
-    m_nCellCnt = m_nCellWidth*m_nCellHeight;
     
-    for( int i = 0; i < m_nCellCnt; i++ )
+    for( int i = 0; i < STAGE_DATA_MAP_MAX_NUM; i++ )
     {
-        CellLayer* pCellLayer = CellLayer::create(CELL_MAP[i], i);
+        CellLayer* pCellLayer = CellLayer::create(STAGE_DATA_MAP[i], i);
         this->addChild(pCellLayer);
         
         m_vecCellLayer.push_back( pCellLayer );
@@ -132,9 +127,9 @@ void MainStageScene::initArrowButton()
 
 void MainStageScene::refreshCell()
 {
-    for( int i = 0; i < m_nCellCnt; i++ )
+    for( int i = 0; i < STAGE_DATA_MAP_MAX_NUM; i++ )
     {
-        m_vecCellLayer[i]->refreshCellType(CELL_MAP[i]);
+        m_vecCellLayer[i]->refreshCellType(STAGE_DATA_MAP[i]);
     }
 }
 
@@ -176,9 +171,9 @@ bool MainStageScene::isMapOut( int nTag, int nTargetIndex )
 
 int MainStageScene::getCharacterPosIndex()
 {
-    for( int i = 0 ; i < m_nCellCnt; i++ )
+    for( int i = 0 ; i < STAGE_DATA_MAP_MAX_NUM; i++ )
     {
-        if( CELL_MAP[i] == CELL_TYPE_CHARACTER )
+        if( STAGE_DATA_MAP[i] == CELL_TYPE_CHARACTER )
         {
             return i;
         }
@@ -189,11 +184,11 @@ int MainStageScene::getCharacterPosIndex()
 
 void MainStageScene::cellDataMove( int nCurPosIdx, int nNextPosIdx )
 {
-    int nCurCellType = CELL_MAP[nCurPosIdx];
-    int nNextCellType = CELL_MAP[nNextPosIdx];
+    int nCurCellType = STAGE_DATA_MAP[nCurPosIdx];
+    int nNextCellType = STAGE_DATA_MAP[nNextPosIdx];
     
-    CELL_MAP[nNextPosIdx] = nCurCellType;
-    CELL_MAP[nCurPosIdx] = nNextCellType;
+    STAGE_DATA_MAP[nNextPosIdx] = nCurCellType;
+    STAGE_DATA_MAP[nCurPosIdx] = nNextCellType;
 }
 
 int MainStageScene::getNextPosIdx( int nTag, int nCurPosIdx )
@@ -230,7 +225,7 @@ int MainStageScene::isBallMoveEnable( int nTag, int nCurPosIdx )
         return ERROR;
     }
 
-    if( CELL_MAP[nNextPosIdx] == CELL_TYPE_OPEN )
+    if( STAGE_DATA_MAP[nNextPosIdx] == CELL_TYPE_OPEN )
     {
         return nNextPosIdx;
     }
@@ -278,11 +273,11 @@ void MainStageScene::arrowTouched( int nTag )
     {
         m_vecCellLayer[nCurCharacterPosIdx]->startShakeAnimation( nShakeType );
     }
-    else if( CELL_MAP[nNextPosIdx] == CELL_TYPE_WALL )
+    else if( STAGE_DATA_MAP[nNextPosIdx] == CELL_TYPE_WALL )
     {
         m_vecCellLayer[nCurCharacterPosIdx]->startShakeAnimation( nShakeType );
     }
-    else if( CELL_MAP[nNextPosIdx] == CELL_TYPE_BALL )
+    else if( STAGE_DATA_MAP[nNextPosIdx] == CELL_TYPE_BALL )
     {
         int nBallNextPosIdx = isBallMoveEnable( nTag, nNextPosIdx );
         // 다음 위치에 있는 공은 내가 움직이려는 방향으로 이동이 가능한가?
@@ -301,7 +296,7 @@ void MainStageScene::arrowTouched( int nTag )
             this->refreshCell();
         }
     }
-    else if( CELL_MAP[nNextPosIdx] == CELL_TYPE_OPEN )
+    else if( STAGE_DATA_MAP[nNextPosIdx] == CELL_TYPE_OPEN )
     {
         // 이동 가능
         this->cellDataMove( nCurCharacterPosIdx, nNextPosIdx );
@@ -438,10 +433,3 @@ void MainStageScene::onTouchEnded(Touch* pTouch, Event* pEvent)
     
     m_nTouchTag = TOUCH_CANCEL_TAG;
 }
-
-void MainStageScene::updateJoyStickVelocity( Vec2 vecJoyStickVelocity )
-{
-    CCLOG("MainStageScene::updateJoyStickVelocity()");
-}
-
-
